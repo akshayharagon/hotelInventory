@@ -3,6 +3,7 @@ import { AfterViewChecked, AfterViewInit, Component, DoCheck, OnInit, ViewChild 
 import { RoomList } from './rooms';
 import { RoomsListComponent } from "./rooms-list/rooms-list.component";
 import { HeaderComponent } from "../header/header.component";
+import { RoomsService } from './services/rooms.service';
 
 @Component({
     selector: 'app-rooms',
@@ -12,6 +13,10 @@ import { HeaderComponent } from "../header/header.component";
     imports: [CommonModule, RoomsListComponent, HeaderComponent]
 })
 export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterViewChecked{
+  
+  constructor(private roomService:RoomsService){}
+  roomList:any;
+
   ngAfterViewChecked(): void {
   }
   ngAfterViewInit(): void {
@@ -19,6 +24,7 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterView
     this.headerComponent.title=' '
   }
   ngOnInit(): void {
+    this.roomList=this.roomService.getRoomsList();
     // console.log(this.headerComponent)
   }
   @ViewChild(HeaderComponent, {static:true}) headerComponent : HeaderComponent
@@ -60,37 +66,6 @@ toggle() {
 
 
 
-  roomList: RoomList[] = [
-    {
-      roomNumber: 101,
-      roomType: 'Deluxe',
-      amenities: 'AC, wifi',
-      price: 500,
-      photos: 'https://images...',
-      checkInTime: new Date('12-Nov-2023'),
-      checkOutTime: new Date('15-Nov-2023'),
-      rating: 4.5
-    },
-    {
-      roomNumber: 102,
-      roomType: 'Private',
-      amenities: 'AC, wifi, TV',
-      price: 700,
-      photos: 'https://images...',
-      checkInTime: new Date('12-Nov-2023'),
-      checkOutTime: new Date('15-Nov-2023'),
-      rating: 4.6
-    },
-    {
-      roomNumber: 103,
-      roomType: 'Cottage',
-      amenities: 'AC, wifi, pool',
-      price: 1500,
-      photos: 'https://images...',
-      checkInTime: new Date('12-Nov-2023'),
-      checkOutTime: new Date('15-Nov-2023'),
-      rating: 5.05
-    }
-  ]
+
 
 }
