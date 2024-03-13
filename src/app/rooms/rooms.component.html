@@ -1,1 +1,16 @@
-<app-rooms-list [allRooms]="roomList" (selectedRoom)="selectedRoomOnClick($event)"></app-rooms-list>
+<button (click)="toggle()">Toggle</button>
+<div *ngIf="showTitle">    
+   <h2> {{hotelName}}</h2>
+    <br>
+    @if (true) {
+        @if (displaySelectedRoomInfo) {
+            <div>{{displaySelectedRoomInfo | json}}</div>
+        }
+        <app-rooms-list [allRooms]="roomList"
+        [title]="title" (selectedRoom)="selectedRoomOnClick($event)"></app-rooms-list>
+        <button (click)="addRoom()">
+            Add Room
+        </button>
+    }
+</div>
+    
