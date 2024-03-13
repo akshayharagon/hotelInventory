@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { AfterViewInit, Component, DoCheck, OnInit, ViewChild } from '@angular/core';
+import { AfterViewChecked, AfterViewInit, Component, DoCheck, OnInit, ViewChild } from '@angular/core';
 import { RoomList } from './rooms';
 import { RoomsListComponent } from "./rooms-list/rooms-list.component";
 import { HeaderComponent } from "../header/header.component";
@@ -11,12 +11,15 @@ import { HeaderComponent } from "../header/header.component";
     styleUrl: './rooms.component.scss',
     imports: [CommonModule, RoomsListComponent, HeaderComponent]
 })
-export class RoomsComponent implements OnInit, DoCheck, AfterViewInit{
+export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, AfterViewChecked{
+  ngAfterViewChecked(): void {
+  }
   ngAfterViewInit(): void {
     console.log("from after view init " +this.headerComponent.title)
+    this.headerComponent.title=' '
   }
   ngOnInit(): void {
-    console.log(this.headerComponent)
+    // console.log(this.headerComponent)
   }
   @ViewChild(HeaderComponent, {static:true}) headerComponent : HeaderComponent
   // another way of accessing component properties without using @Input & @Output
