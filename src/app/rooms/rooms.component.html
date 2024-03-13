@@ -1,6 +1,7 @@
 <button (click)="toggle()">Toggle</button>
+<app-header></app-header>
 <div *ngIf="showTitle">    
-   <h2> {{hotelName}}</h2>
+   <h2>Welcome to {{hotelName}}</h2>
     <br>
     @if (true) {
         @if (displaySelectedRoomInfo) {

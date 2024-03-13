@@ -1,16 +1,31 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { AfterViewInit, Component, DoCheck, OnInit, ViewChild } from '@angular/core';
 import { RoomList } from './rooms';
 import { RoomsListComponent } from "./rooms-list/rooms-list.component";
+import { HeaderComponent } from "../header/header.component";
 
 @Component({
-  selector: 'app-rooms',
-  standalone: true,
-  templateUrl: './rooms.component.html',
-  styleUrl: './rooms.component.scss',
-  imports: [CommonModule, RoomsListComponent]
+    selector: 'app-rooms',
+    standalone: true,
+    templateUrl: './rooms.component.html',
+    styleUrl: './rooms.component.scss',
+    imports: [CommonModule, RoomsListComponent, HeaderComponent]
 })
-export class RoomsComponent {
+export class RoomsComponent implements OnInit, DoCheck, AfterViewInit{
+  ngAfterViewInit(): void {
+    console.log("from after view init " +this.headerComponent.title)
+  }
+  ngOnInit(): void {
+    console.log(this.headerComponent)
+  }
+  @ViewChild(HeaderComponent, {static:true}) headerComponent : HeaderComponent
+  // another way of accessing component properties without using @Input & @Output
+  // with @ViewChild we can create instance of particular component by implementing 
+  // AfterViewInit. Or we can use {static:true} property to use just within OnInit
+
+  ngDoCheck(): void {
+    console.log('on chnages called')
+  }
 addRoom() {
   console.log("added")
   const newRoom : RoomList= {
