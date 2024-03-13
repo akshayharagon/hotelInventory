@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, OnDestroy, Output, SimpleChanges } from '@angular/core';
 import { Room, RoomList } from '../rooms';
 
 @Component({
@@ -15,7 +15,10 @@ import { Room, RoomList } from '../rooms';
   // ngOmChanges will be applied only on the components or the directives having @Input properties
 
 })
-export class RoomsListComponent implements OnChanges{
+export class RoomsListComponent implements OnChanges, OnDestroy{
+  ngOnDestroy(): void {
+    console.log('on destroy called')
+    }
   ngOnChanges(changes: SimpleChanges): void {
     console.log(changes);
     if(changes['title']){
