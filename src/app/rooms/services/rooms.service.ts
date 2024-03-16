@@ -40,11 +40,17 @@ export class RoomsService {
     }
   ]
 
-  constructor(@Inject(APP_SERVICE_CONFIG) private config:AppConfig) {
+  // constructor(@Inject(APP_SERVICE_CONFIG) private config:AppConfig) {
+    constructor() {
     console.log('Room service initialized')
-    console.log(config.apiEndpoint)
+    // console.log(config.apiEndpoint)
    }
   getRoomsList(){
+    let akshay={
+      name:'akshay',
+      lName:'haragon'
+    }
+    localStorage.setItem('akshayData',JSON.stringify(akshay));
     return this.roomList;
   }
 }
